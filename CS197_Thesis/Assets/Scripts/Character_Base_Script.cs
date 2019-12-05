@@ -6,6 +6,7 @@ public class Character_Base_Script : MonoBehaviour
 {
     // Start is called before the first frame update
     private int actionPoints;
+    
     void Start()
     {
         
@@ -50,4 +51,6 @@ public class Character_Base_Script : MonoBehaviour
             actionPoints = 3;
         }
     }
+
+    
 }
