@@ -6,6 +6,7 @@ public class Character_Base_Script : MonoBehaviour
 {
     // Start is called before the first frame update
     private int actionPoints;
+    private int position;
     
     void Start()
     {
@@ -52,5 +53,16 @@ public class Character_Base_Script : MonoBehaviour
         }
     }
 
-    
+    public int ReturnPosition()
+    {
+        return position;
+    }
+
+    public void UpdatePosition(int a)
+    {
+        position = a;
+    }
+
+
+
 }

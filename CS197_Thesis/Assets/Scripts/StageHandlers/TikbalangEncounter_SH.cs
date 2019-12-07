@@ -19,9 +19,25 @@ public class TikbalangEncounter_SH : MonoBehaviour
 
     private Character_Base_Script playerCharacter;
     private Character_Base_Script tikbalang;
-
     private State state;
-    private bool soundPlayed;
+
+    int[] map = new int[]
+    {
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
+        1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
+        1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    };
 
     private enum State
     {
@@ -39,7 +55,8 @@ public class TikbalangEncounter_SH : MonoBehaviour
         playerCharacter = SpawnCharacters(true);
         tikbalang = SpawnCharacters(false);
         triggerSound = GetComponent<AudioSource>();
-        //clip = (AudioClip)Resources.Load("Mmm", typeof(AudioClip));
+        playerCharacter.UpdatePosition(200);
+        Debug.Log("player position:" + playerCharacter.ReturnPosition());
     }
 
     // Update is called once per frame
@@ -48,39 +65,12 @@ public class TikbalangEncounter_SH : MonoBehaviour
        
         if (state == State.MovementPhase)
         {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x, playerCharacter.transform.position.y - 1);
-            }
-            else if (Input.GetKeyDown(KeyCode.W))
-            {
-                playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x, playerCharacter.transform.position.y + 1);
-            }
-            else if (Input.GetKeyDown(KeyCode.A))
-            {
-                playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x - 1, playerCharacter.transform.position.y);
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x + 1, playerCharacter.transform.position.y);
-            }
+            MovementPhase();
             CheckSceneTrigger();
         }
         
 
 
-        /*if ( state == State.Sound)
-        {
-          
-            if (!triggerSound.isPlaying)
-            {
-                triggerSound.Play();
-                if (!triggerSound.isPlaying)
-                    soundPlayed = true;
-                if(soundPlayed == true)
-                    state = State.Cutscene;
-            }
-        }*/
 
         if( state == State.Cutscene)
         {
@@ -92,9 +82,6 @@ public class TikbalangEncounter_SH : MonoBehaviour
         {
             LoadNextScene();
         }
-
-        
-
 
     }
 
@@ -123,7 +110,7 @@ public class TikbalangEncounter_SH : MonoBehaviour
 
     private void CheckSceneTrigger()
     {
-        if (playerCharacter.transform.position.x == 1.5 && playerCharacter.transform.position.y == -1.5)
+        if(playerCharacter.ReturnPosition() == 136 || playerCharacter.ReturnPosition() == 154)
         {
             state = State.Sound;
             if (!triggerSound.isPlaying)
@@ -131,10 +118,7 @@ public class TikbalangEncounter_SH : MonoBehaviour
                 triggerSound.PlayOneShot(clip);
             }
             state = State.Cutscene;
-            StartCoroutine(ExampleCoroutine());
-           
-
-           
+            StartCoroutine(NextSceneCoroutine());
         }
        
     }
@@ -144,15 +128,77 @@ public class TikbalangEncounter_SH : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    IEnumerator ExampleCoroutine()
+    IEnumerator NextSceneCoroutine()
     {
-        //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
-
-        //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(7);
         state = State.End;
-        //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+    }
+
+    private void MovementPhase()
+    {
+        int tempPos = playerCharacter.ReturnPosition();
+       
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            tempPos = tempPos + 18;
+            if (CheckCollision(tempPos))
+            {
+                playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x, playerCharacter.transform.position.y - 1);
+                playerCharacter.UpdatePosition(tempPos);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            tempPos = tempPos - 18;
+            if(CheckCollision(tempPos))
+            {
+                playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x, playerCharacter.transform.position.y + 1);
+                playerCharacter.UpdatePosition(tempPos);
+                Debug.Log("player position:" + playerCharacter.ReturnPosition());
+            }
+
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            tempPos = tempPos - 1;
+            if(CheckCollision(tempPos))
+            {
+                playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x - 1, playerCharacter.transform.position.y);
+                playerCharacter.UpdatePosition(tempPos);
+                Debug.Log("player position:" + playerCharacter.ReturnPosition());
+            }
+
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            tempPos = tempPos + 1;
+            if(CheckCollision(tempPos))
+            {
+                playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x + 1, playerCharacter.transform.position.y);
+                playerCharacter.UpdatePosition(tempPos);
+                Debug.Log("player position:" + playerCharacter.ReturnPosition());
+            }
+
+        }
+    }
+
+    private bool CheckCollision(int tempPos)
+    {
+        if (map[tempPos] == 1)
+        {
+            return false;
+        }
+
+        else if (map[tempPos] == 0 || map[tempPos] == 2)
+        {
+            return true;
+        }
+
+        else
+        {
+            return true;
+        }
     }
 }
