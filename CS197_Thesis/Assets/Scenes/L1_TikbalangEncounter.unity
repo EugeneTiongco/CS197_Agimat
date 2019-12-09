@@ -1663,7 +1663,7 @@ MonoBehaviour:
   pf_Enemy_Base: {fileID: 1459656092578184222, guid: 44b4d4bc00878b245a8d68f9a41e31b1,
     type: 3}
   triggerSound: {fileID: 0}
-  clip: {fileID: 8300000, guid: 77069f1e9326568438ad7780ceab4a6d, type: 3}
+  clip: {fileID: 8300000, guid: 154cdd2e6a87290459456f2b844170f9, type: 3}
 --- !u!82 &1123488669
 AudioSource:
   m_ObjectHideFlags: 0

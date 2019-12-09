@@ -21,10 +21,17 @@ public class Turn_Window : MonoBehaviour
     {
         gameObject.SetActive(true);
         transform.Find("Text").GetComponent<Text>().text = turnstring;
+        StartCoroutine(TextGoneDelay());
     }
 
     public static void Show_Static(string winnerstring)
     {
         instance.Show(winnerstring);
+    }
+
+    IEnumerator TextGoneDelay()
+    {
+        yield return new WaitForSeconds(5);
+        gameObject.SetActive(false);
     }
 }
