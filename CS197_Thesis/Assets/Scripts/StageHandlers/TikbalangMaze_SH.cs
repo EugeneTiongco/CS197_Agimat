@@ -14,7 +14,7 @@ public class TikbalangMaze_SH : MonoBehaviour
     }
 
 
-    [SerializeField] private Transform pf_Character_Base;
+    [SerializeField] private Transform pf_Character_Fog;
     [SerializeField] private Transform pf_Enemy_Base; //TODO change this to tikbalang prefab
     public AudioSource triggerSound;
     public AudioClip clip;
@@ -22,6 +22,12 @@ public class TikbalangMaze_SH : MonoBehaviour
     private Character_Base_Script playerCharacter;
     private Character_Base_Script tikbalang;
     private State state;
+    private bool rodeTikbalang = false;
+    private int spaceBarPressed = 0;
+    private bool isActive;
+
+    private float maxTime = 5f;
+    private float timeLeft;
 
     int[] map = new int[]
     {
@@ -43,7 +49,7 @@ public class TikbalangMaze_SH : MonoBehaviour
     };
     private enum State
     {
-        MovementPhase, Cutscene, Sound, End, TikbalangRide
+        MovementPhase, Cutscene, Sound, End, TikbalangRide, GameOver
     }
 
     private void Awake()
@@ -54,6 +60,8 @@ public class TikbalangMaze_SH : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Turn_Window.Show_Static("The tikbalang made you lose your way");
+        timeLeft = maxTime;
         playerCharacter = SpawnCharacters(true);
         tikbalang = SpawnCharacters(false);
         triggerSound = GetComponent<AudioSource>();
@@ -70,7 +78,39 @@ public class TikbalangMaze_SH : MonoBehaviour
             CheckSceneTrigger();
         }
 
+        if(state == State.TikbalangRide)
+        {
+            
+            Image_Window.DisplayImages();
 
+            if (timeLeft > 0)
+            {
+                timeLeft -= Time.deltaTime;
+            }
+            else
+            {
+                Time.timeScale = 0;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                spaceBarPressed++;
+            }
+           
+            if(timeLeft <=0 && spaceBarPressed >= 15)
+            {
+                Turn_Window.Show_Static("You recieved the Tikbalang's mutya!");
+                Image_Window.Hide();
+                state = State.MovementPhase;
+            }
+
+            else if(timeLeft <= 0 && spaceBarPressed < 15)
+            {
+                Image_Window.Hide();
+                state = State.GameOver;
+            }
+
+        }
 
 
         if (state == State.Cutscene)
@@ -81,7 +121,16 @@ public class TikbalangMaze_SH : MonoBehaviour
 
         if (state == State.End)
         {
-           //TODO go back to previous scene
+            
+            LoadNextScene();
+            //TODO go back to previous scene
+        }
+
+        if (state == State.GameOver)
+        {
+            StartCoroutine(GameOverTextTimer());
+           
+
         }
     }
 
@@ -92,7 +141,7 @@ public class TikbalangMaze_SH : MonoBehaviour
         if (isPlayer)
         {
             position = new Vector3(-6.5f, -2.5f);
-            Transform characterTransform = Instantiate(pf_Character_Base, position, Quaternion.identity);
+            Transform characterTransform = Instantiate(pf_Character_Fog, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
             character.Setup(isPlayer);
         }
@@ -111,32 +160,32 @@ public class TikbalangMaze_SH : MonoBehaviour
     {
         if (playerCharacter.ReturnPosition() == 41) // Clue trigger
         {
-            Turn_Window.Show_Static("15 times you must");
+            Turn_Window.Show_Static("Spacebar. 15 times.");
         }
 
-        else if (playerCharacter.ReturnPosition() == 174) // tikbalang trigger
+        else if (playerCharacter.ReturnPosition() == 174 && rodeTikbalang == false) // tikbalang trigger
         {
-            Turn_Window.Show_Static("*Tikbalang riding here*");
+            //Turn_Window.Show_Static("*Tikbalang riding here*");
             state = State.TikbalangRide;
-            StartCoroutine(TikbalangTimer());
 
         }
 
         else if (playerCharacter.ReturnPosition() == 15) // Escaped trigger
         {
             Turn_Window.Show_Static("You escaped the tikbalang");
-            state = State.End;
+            StartCoroutine(NextSceneCoroutine());
+            
         }
-
-
-
     }
 
-    IEnumerator TikbalangTimer()
+    IEnumerator GameOverTextTimer()
     {
+        Turn_Window.Show_Static("Game Over! Try Again");
+        Debug.Log("State: " + state);
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
-        yield return new WaitForSeconds(15);
-        state = State.MovementPhase;
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(2);
+
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
 
@@ -204,5 +253,18 @@ public class TikbalangMaze_SH : MonoBehaviour
         {
             return true;
         }
+    }
+
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    IEnumerator NextSceneCoroutine()
+    {
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        yield return new WaitForSeconds(3);
+        state = State.End;
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
 }

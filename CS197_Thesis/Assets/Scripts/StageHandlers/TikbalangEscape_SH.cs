@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TikbalangEncounter_SH : MonoBehaviour
+public class TikbalangEscape_SH : MonoBehaviour
 {
-    private static TikbalangEncounter_SH stageHandler;
+    private static TikbalangEscape_SH stageHandler;
 
-    public static TikbalangEncounter_SH getInstance()
+    public static TikbalangEscape_SH getInstance()
     {
         return stageHandler;
     }
 
     [SerializeField] private Transform pf_Character_Base;
-    [SerializeField] private Transform pf_Enemy_Base; //TODO change this to tikbalang prefab
-    public AudioSource triggerSound;
-    public AudioClip clip;
+    //[SerializeField] private Transform pf_Enemy_Base; //TODO change this to tikbalang prefab
+    //public AudioSource triggerSound;
+    //public AudioClip clip;
 
     private Character_Base_Script playerCharacter;
-    private Character_Base_Script tikbalang;
+    //private Character_Base_Script tikbalang;
     private State state;
 
     int[] map = new int[]
@@ -30,13 +30,13 @@ public class TikbalangEncounter_SH : MonoBehaviour
         1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
         1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
         1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
-        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1,
-        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
         1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1,
         1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
         1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
         1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1
     };
 
     private enum State
@@ -53,34 +53,35 @@ public class TikbalangEncounter_SH : MonoBehaviour
     void Start()
     {
         playerCharacter = SpawnCharacters(true);
-        tikbalang = SpawnCharacters(false);
-        triggerSound = GetComponent<AudioSource>();
-        playerCharacter.UpdatePosition(200);
+        //tikbalang = SpawnCharacters(false);
+        //triggerSound = GetComponent<AudioSource>();
+        playerCharacter.UpdatePosition(137);
         Debug.Log("player position:" + playerCharacter.ReturnPosition());
     }
 
     // Update is called once per frame
     private void Update()
     {
-       
+
         if (state == State.MovementPhase)
         {
             MovementPhase();
-            CheckSceneTrigger();
+            CheckEndTrigger();
         }
-        
 
 
 
-        if( state == State.Cutscene)
+
+        if (state == State.Cutscene)
         {
-            TkEncounter_Image_Window.DisplayImages();
+            //TkEncounter_Image_Window.DisplayImages();
             //TODO pop up should appear here
         }
 
         if (state == State.End)
         {
-            LoadNextScene();
+            //Application.Quit();
+            //LoadNextScene();
         }
 
     }
@@ -90,27 +91,21 @@ public class TikbalangEncounter_SH : MonoBehaviour
     {
         Vector3 position;
         Character_Base_Script character;
-        if (isPlayer)
-        {
-            position = new Vector3(-6.5f, -4.5f);
+       
+            position = new Vector3(2.5f, -0.5f);
             Transform characterTransform = Instantiate(pf_Character_Base, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
             character.Setup(isPlayer);
-        }
-        else
-        {
-            position = new Vector3(1.5f, 0.5f);
-            Transform characterTransform = Instantiate(pf_Enemy_Base, position, Quaternion.identity);
-            character = characterTransform.GetComponent<Character_Base_Script>();
-            character.Setup(isPlayer);
-        }
+        
+        
+        
 
         return character;
     }
 
-    private void CheckSceneTrigger()
+    private void CheckEndTrigger()
     {
-        if(playerCharacter.ReturnPosition() == 136 || playerCharacter.ReturnPosition() == 154)
+        /*if (playerCharacter.ReturnPosition() == 136 || playerCharacter.ReturnPosition() == 154)
         {
             state = State.Sound;
             if (!triggerSound.isPlaying)
@@ -119,8 +114,13 @@ public class TikbalangEncounter_SH : MonoBehaviour
             }
             state = State.Cutscene;
             StartCoroutine(NextSceneCoroutine());
+        }*/
+
+        if(playerCharacter.ReturnPosition() >= 248 && playerCharacter.ReturnPosition() <= 250)
+        {
+            state = State.End;
         }
-       
+
     }
 
     private void LoadNextScene()
@@ -139,7 +139,7 @@ public class TikbalangEncounter_SH : MonoBehaviour
     private void MovementPhase()
     {
         int tempPos = playerCharacter.ReturnPosition();
-       
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             tempPos = tempPos + 18;
@@ -152,7 +152,7 @@ public class TikbalangEncounter_SH : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.W))
         {
             tempPos = tempPos - 18;
-            if(CheckCollision(tempPos))
+            if (CheckCollision(tempPos))
             {
                 playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x, playerCharacter.transform.position.y + 1);
                 playerCharacter.UpdatePosition(tempPos);
@@ -163,7 +163,7 @@ public class TikbalangEncounter_SH : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.A))
         {
             tempPos = tempPos - 1;
-            if(CheckCollision(tempPos))
+            if (CheckCollision(tempPos))
             {
                 playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x - 1, playerCharacter.transform.position.y);
                 playerCharacter.UpdatePosition(tempPos);
@@ -174,7 +174,7 @@ public class TikbalangEncounter_SH : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D))
         {
             tempPos = tempPos + 1;
-            if(CheckCollision(tempPos))
+            if (CheckCollision(tempPos))
             {
                 playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x + 1, playerCharacter.transform.position.y);
                 playerCharacter.UpdatePosition(tempPos);
@@ -189,11 +189,6 @@ public class TikbalangEncounter_SH : MonoBehaviour
         if (map[tempPos] == 1)
         {
             return false;
-        }
-
-        else if (map[tempPos] == 0 || map[tempPos] == 2)
-        {
-            return true;
         }
 
         else

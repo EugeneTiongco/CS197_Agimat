@@ -31,7 +31,7 @@ public class Turn_Window : MonoBehaviour
 
     IEnumerator TextGoneDelay()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         gameObject.SetActive(false);
     }
 }
