@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/L1_TikbalangMaze.unity
     guid: 8f5f8b7a7938f4144ba246bb55c1d79b
+  - enabled: 1
+    path: Assets/Scenes/L1_TikbalangEscape.unity
+    guid: bbc55ea7d5db600498a239b541e15324
   m_configObjects: {}

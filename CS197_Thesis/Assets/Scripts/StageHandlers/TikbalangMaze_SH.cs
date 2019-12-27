@@ -173,8 +173,9 @@ public class TikbalangMaze_SH : MonoBehaviour
         else if (playerCharacter.ReturnPosition() == 15) // Escaped trigger
         {
             Turn_Window.Show_Static("You escaped the tikbalang");
-            StartCoroutine(NextSceneCoroutine());
-            
+            //StartCoroutine(NextSceneCoroutine());
+            state = State.End;
+
         }
     }
 
@@ -193,7 +194,7 @@ public class TikbalangMaze_SH : MonoBehaviour
     {
         int tempPos = playerCharacter.ReturnPosition();
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             tempPos = tempPos + 18;
             if (CheckCollision(tempPos))
@@ -202,7 +203,7 @@ public class TikbalangMaze_SH : MonoBehaviour
                 playerCharacter.UpdatePosition(tempPos);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.S))
         {
             tempPos = tempPos - 18;
             if (CheckCollision(tempPos))
@@ -213,7 +214,7 @@ public class TikbalangMaze_SH : MonoBehaviour
             }
 
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             tempPos = tempPos - 1;
             if (CheckCollision(tempPos))
@@ -224,7 +225,7 @@ public class TikbalangMaze_SH : MonoBehaviour
             }
 
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.W))
         {
             tempPos = tempPos + 1;
             if (CheckCollision(tempPos))
