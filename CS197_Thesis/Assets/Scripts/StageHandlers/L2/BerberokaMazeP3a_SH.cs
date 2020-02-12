@@ -22,7 +22,7 @@ public class BerberokaMazeP3a_SH : MonoBehaviour
         PlayerMovement, EnvironmentMovement, LoadNextPhase, Gameover
     }
 
-    char[] map = new char[]
+    /*char[] map = new char[]
     {
         'w',    'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
 
@@ -38,6 +38,27 @@ public class BerberokaMazeP3a_SH : MonoBehaviour
         'w',    'w', 'w', 'd', 'd', 'r', 'u', 'u', 'u', 'w', 'w', 'u', 'l', 'd', 'w', 'w', 'w',    'w',
         'w',    'w', 'w', 'd', 'd', 'u', 'u', 'u', 'w', 'w', 'w', 'w', 'w', 'r', '0', '0', 'e',    'w',
         'w',    'w', 'w', 'r', 'r', 'r', 'r', 'u', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
+
+        'w',    'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
+
+    };*/
+
+    char[] map = new char[]
+    {
+        'w',    'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
+
+        'w',    'w', 'w', 'w', 'r', 'b', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w', 'b', 'b', 'b',    'w',
+        'w',    't', 'v', 'r', 'r', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'b', 'b', 'b',    'w',
+        'w',    '0', 'd', 'r', 'r', 'b', 'b', 'w', 'w', '0', 'w', 'w', 'w', 'b', 'b', 'b', 'b',    'w',
+        'w',    '0', 'd', 'r', 'b', 'b', 'b', 'l', 'l', '0', 't', 'w', 'w', 'b', 'b', 'b', 'b',    'w',
+        'w',    '0', 'd', 'r', 'r', 'b', 'd', 'l', 'u', 'u', 'v', 'r', 'r', 'u', '0', 'b', 'b',    'w',
+        'w',    'u', 'r', 'r', '0', 'b', 'r', 'r', '0', '0', 'r', 'u', 'd', 'l', '0', 'w', 'w',    'w',
+        'w',    'u', 'l', '0', '0', 'u', 'l', 'l', 'u', 'u', 'r', 'u', 'd', 'd', 'l', 'w', 'w',    'w',
+        'w',    'w', 'd', '0', 'v', 'r', 'r', 'r', 'u', 'w', 'r', 'u', 'd', 'd', 'w', 'w', 'w',    'w',
+        'w',    'w', 'r', 'r', 'd', '0', 'r', 'u', 'u', 'w', 'r', 'u', 'd', 'd', 'w', 'w', 'w',    'w',
+        'w',    'w', 'w', 'd', 'd', 'r', 'u', 'w', 'w', 'w', 'w', 'u', 'l', 'd', 'w', 'w', 'w',    'w',
+        'w',    'w', 'w', 'd', 'd', 'u', 'u', 'b', 'b', 'b', 'w', 'w', 'w', 'r', '0', '0', 'e',    'w',
+        'w',    'w', 'w', 'r', 'r', 'r', 'b', 'b', 'b', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
 
         'w',    'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
 
@@ -150,7 +171,7 @@ public class BerberokaMazeP3a_SH : MonoBehaviour
 
         }
 
-        else if (Input.GetKeyDown(KeyCode.E) && tempPos == 100)
+        else if (Input.GetKeyDown(KeyCode.E) && map[tempPos] == 't')
         {
             state = State.LoadNextPhase;
             Debug.Log("Valve turned");
@@ -208,7 +229,7 @@ public class BerberokaMazeP3a_SH : MonoBehaviour
 
     private bool CheckCollision(int tempPos)
     {
-        if (map[tempPos] == 'w')
+        if (map[tempPos] == 'w' || map[tempPos] == 'v')
         {
             return false;
         }

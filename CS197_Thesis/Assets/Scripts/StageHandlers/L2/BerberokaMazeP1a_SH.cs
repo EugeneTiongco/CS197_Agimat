@@ -28,7 +28,7 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
         'w',    'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
 
         'w',    'w', 'w', 'w', 'r', 'b', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w', 'b', 'b', 'b',    'w',
-        'w',    '0', 'v', 'r', 'r', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'b', 'b', 'b',    'w',
+        'w',    't', 'v', 'r', 'r', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'b', 'b', 'b',    'w',
         'w',    '0', 'r', 'r', 'r', 'b', 'b', 'w', 'w', '0', 'w', 'w', 'w', 'b', 'b', 'b', 'b',    'w',
         'w',    '0', 'r', 'r', 'b', 'b', 'b', 'l', 'l', '0', '0', 'w', 'w', 'b', 'b', 'b', 'b',    'w',
         'w',    '0', 'r', 'r', 'r', 'b', 'd', 'l', 'u', 'u', 'v', 'r', 'r', 'u', '0', 'b', 'b',    'w',
@@ -36,9 +36,9 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
         'w',    'u', 'l', '0', '0', 'u', 'l', 'l', 'u', 'u', 'r', 'u', 'd', 'd', 'l', 'w', 'w',    'w',
         'w',    'w', 'd', '0', 'v', '0', 'u', 'u', 'u', 'w', 'r', 'u', 'd', 'd', 'w', 'w', 'w',    'w',
         'w',    'w', 'r', 'r', '0', '0', 'r', 'u', 'u', 'w', 'r', 'u', 'd', 'd', 'w', 'w', 'w',    'w',
-        'w',    'w', 'w', 'd', '0', 'r', 'u', 'u', 'u', 'w', 'w', 'u', 'l', 'd', 'w', 'w', 'w',    'w',
-        'w',    'w', 'w', 'd', 'r', 'u', 'u', 'u', 'w', 'w', 'w', 'w', 'w', 'r', '0', '0', 'e',    'w',
-        'w',    'w', 'w', 'r', 'r', 'r', 'r', 'u', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
+        'w',    'w', 'w', 'd', '0', 'r', 'u', 'w', 'w', 'w', 'w', 'u', 'l', 'd', 'w', 'w', 'w',    'w',
+        'w',    'w', 'w', 'd', 'r', 'u', 'u', 'b', 'b', 'b', 'w', 'w', 'w', 'r', '0', '0', 'e',    'w',
+        'w',    'w', 'w', 'r', 'r', 'r', 'b', 'b', 'b', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
 
         'w',    'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
 
@@ -101,6 +101,7 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
 
         if (state == State.LoadNextPhase)
         {
+            Debug.Log("Valve turned 2");
             SceneManager.LoadScene(5);
         }
     }
@@ -110,6 +111,7 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
     private void MovementPhase()
     {
         int tempPos = playerCharacter.ReturnPosition();
+        
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -151,10 +153,13 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
 
         }
 
-        else if (Input.GetKeyDown(KeyCode.E) && map[tempPos] == 'v')
+        else if (map[tempPos] == 't' && Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("Valve turned 1");
             state = State.LoadNextPhase;
-            Debug.Log("Valve turned");
+            Debug.Log("state: " + state);
+            
+
         }
     }
 
@@ -209,7 +214,7 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
 
     private bool CheckCollision(int tempPos)
     {
-        if (map[tempPos] == 'w')
+        if (map[tempPos] == 'w' || map[tempPos] == 'v' )
         {
             return false;
         }

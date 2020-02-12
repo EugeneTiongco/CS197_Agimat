@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: WaterCurrent
+  m_EditorClassIdentifier: Unity.2D.Tilemap.Extras:UnityEngine.Tilemaps:AnimatedTile
+  m_AnimatedSprites:
+  - {fileID: -8437040692719410603, guid: d18332feb47965348b24eee5ceb964f4, type: 3}
+  - {fileID: -1498255543248715316, guid: d18332feb47965348b24eee5ceb964f4, type: 3}
+  - {fileID: 5582468031114400243, guid: d18332feb47965348b24eee5ceb964f4, type: 3}
+  m_MinSpeed: 7
+  m_MaxSpeed: 7
+  m_AnimationStartTime: 0
+  m_TileColliderType: 0

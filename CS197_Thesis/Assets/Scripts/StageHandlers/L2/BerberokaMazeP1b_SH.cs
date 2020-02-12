@@ -27,7 +27,7 @@ public class BerberokaMazeP1b_SH : MonoBehaviour
         'w',    'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
 
         'w',    'w', 'w', 'w', 'r', 'b', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w', 'b', 'b', 'b',    'w',
-        'w',    '0', 'v', 'r', 'r', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'b', 'b', 'b',    'w',
+        'w',    't', 'v', 'r', 'r', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'b', 'b', 'b',    'w',
         'w',    '0', 'd', 'r', 'r', 'b', 'b', 'w', 'w', '0', 'w', 'w', 'w', 'b', 'b', 'b', 'b',    'w',
         'w',    '0', 'd', 'r', 'b', 'b', 'b', 'l', 'l', '0', '0', 'w', 'w', 'b', 'b', 'b', 'b',    'w',
         'w',    '0', 'd', 'r', 'r', 'b', 'd', 'l', 'u', 'u', 'v', 'r', 'r', 'u', '0', 'b', 'b',    'w',
@@ -35,9 +35,9 @@ public class BerberokaMazeP1b_SH : MonoBehaviour
         'w',    'u', 'l', '0', '0', 'u', 'l', 'l', 'u', 'u', 'r', 'u', 'd', 'd', 'l', 'w', 'w',    'w',
         'w',    'w', 'd', '0', 'v', '0', 'u', 'u', 'u', 'w', 'r', 'u', 'd', 'd', 'w', 'w', 'w',    'w',
         'w',    'w', 'r', 'r', '0', '0', 'r', 'u', 'u', 'w', 'r', 'u', 'd', 'd', 'w', 'w', 'w',    'w',
-        'w',    'w', 'w', 'd', '0', 'r', 'u', 'u', 'u', 'w', 'w', 'u', 'l', 'd', 'w', 'w', 'w',    'w',
-        'w',    'w', 'w', 'd', 'r', 'u', 'u', 'u', 'w', 'w', 'w', 'w', 'w', 'r', '0', '0', 'e',    'w',
-        'w',    'w', 'w', 'r', 'r', 'r', 'r', 'u', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
+        'w',    'w', 'w', 'd', '0', 'r', 'u', 'w', 'w', 'w', 'w', 'u', 'l', 'd', 'w', 'w', 'w',    'w',
+        'w',    'w', 'w', 'd', 'r', 'u', 'u', 'b', 'b', 'b', 'w', 'w', 'w', 'r', '0', '0', 'e',    'w',
+        'w',    'w', 'w', 'r', 'r', 'r', 'b', 'b', 'b', 'b', 'b', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
 
         'w',    'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w',    'w',
 
@@ -54,8 +54,9 @@ public class BerberokaMazeP1b_SH : MonoBehaviour
     {
         //Turn_Window.Show_Static("The tikbalang made you lose your way");
         playerCharacter = SpawnCharacters(true);
-        playerCharacter.UpdatePosition(38);
+        playerCharacter.UpdatePosition(37);
         Debug.Log("player position:" + playerCharacter.ReturnPosition());
+        
     }
     private Character_Base_Script SpawnCharacters(bool isPlayer)
     {
@@ -63,7 +64,7 @@ public class BerberokaMazeP1b_SH : MonoBehaviour
         Character_Base_Script character;
         if (isPlayer)
         {
-            position = new Vector3(-6.5f, 4.5f);
+            position = new Vector3(-7.5f, 4.5f);
             Transform characterTransform = Instantiate(pf_Character, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
             character.Setup(isPlayer);
@@ -201,7 +202,7 @@ public class BerberokaMazeP1b_SH : MonoBehaviour
 
     private bool CheckCollision(int tempPos)
     {
-        if (map[tempPos] == 'w')
+        if (map[tempPos] == 'w' || map[tempPos] == 'v')
         {
             return false;
         }

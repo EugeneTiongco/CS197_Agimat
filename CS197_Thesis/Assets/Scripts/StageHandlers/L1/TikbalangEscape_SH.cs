@@ -23,20 +23,22 @@ public class TikbalangEscape_SH : MonoBehaviour
 
     int[] map = new int[]
     {
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
-        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
-        1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
-        1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1,
-        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
-        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-        1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1,
-        1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
-        1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
-        1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1
+        1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+        1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1,
+        1,  1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0,  0,
+        1,  1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,  1,
+        1,  1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,  1,
+        1,  1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,  1,
+        1,  1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1, 1, 1, 1,  1,
+        1,  1, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1, 1, 1, 1,  1,
+        1,  1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1,
+        1,  1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1,
+        1,  1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1,
+        1,  1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1,
+        1,  1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1,
+
+        1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1
     };
 
     private enum State
@@ -55,7 +57,7 @@ public class TikbalangEscape_SH : MonoBehaviour
         playerCharacter = SpawnCharacters(true);
         //tikbalang = SpawnCharacters(false);
         //triggerSound = GetComponent<AudioSource>();
-        playerCharacter.UpdatePosition(137);
+        playerCharacter.UpdatePosition(136);
         Debug.Log("player position:" + playerCharacter.ReturnPosition());
     }
 
@@ -81,7 +83,7 @@ public class TikbalangEscape_SH : MonoBehaviour
         if (state == State.End)
         {
             //Application.Quit();
-            //LoadNextScene();
+            LoadNextScene();
         }
 
     }
@@ -92,7 +94,7 @@ public class TikbalangEscape_SH : MonoBehaviour
         Vector3 position;
         Character_Base_Script character;
        
-            position = new Vector3(2.5f, -0.5f);
+            position = new Vector3(1.5f, -0.5f);
             Transform characterTransform = Instantiate(pf_Character_Base, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
             character.Setup(isPlayer);
@@ -116,7 +118,7 @@ public class TikbalangEscape_SH : MonoBehaviour
             StartCoroutine(NextSceneCoroutine());
         }*/
 
-        if(playerCharacter.ReturnPosition() >= 248 && playerCharacter.ReturnPosition() <= 250)
+        if(playerCharacter.ReturnPosition() == 53)
         {
             state = State.End;
         }
@@ -125,7 +127,7 @@ public class TikbalangEscape_SH : MonoBehaviour
 
     private void LoadNextScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(4);
     }
 
     IEnumerator NextSceneCoroutine()
