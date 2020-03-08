@@ -14,8 +14,10 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
     }
 
     [SerializeField] private Transform pf_Character;
-    
+    [SerializeField] private Transform pf_Berberoka_Base;
+
     private Character_Base_Script playerCharacter;
+    private Character_Base_Script Berberoka;
     private State state;
 
     private enum State
@@ -55,6 +57,7 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
     {
         //Turn_Window.Show_Static("The tikbalang made you lose your way");
         playerCharacter = SpawnCharacters(true);
+        Berberoka = SpawnCharacters(false);
         playerCharacter.UpdatePosition(91);
         Debug.Log("player position:" + playerCharacter.ReturnPosition());
     }
@@ -71,9 +74,8 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
         }
         else
         {
-            position = new Vector3(3.5f, -2.5f);
-            Transform characterTransform = Instantiate(pf_Character, position, Quaternion.identity);
-            //Transform characterTransform = Instantiate(pf_Enemy_Base, position, Quaternion.identity);
+            position = new Vector3(-2.8f, 3.5f);
+            Transform characterTransform = Instantiate(pf_Berberoka_Base, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
             character.Setup(isPlayer);
         }
@@ -248,6 +250,11 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
         {
             state = State.Gameover;
 
+        }
+
+        else if(map[currentPosition] == 't')
+        {
+            Turn_Window.Show_Static("Press E to turn valve.");
         }
     }
 

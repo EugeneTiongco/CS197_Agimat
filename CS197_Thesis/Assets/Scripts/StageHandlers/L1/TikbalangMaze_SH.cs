@@ -15,7 +15,7 @@ public class TikbalangMaze_SH : MonoBehaviour
 
 
     [SerializeField] private Transform pf_Character_Fog;
-    [SerializeField] private Transform pf_Enemy_Base; //TODO change this to tikbalang prefab
+    [SerializeField] private Transform pf_Tikbalang_Base2; //TODO change this to tikbalang prefab
     public AudioSource triggerSound;
     public AudioClip clip;
 
@@ -177,7 +177,7 @@ public class TikbalangMaze_SH : MonoBehaviour
         else
         {
             position = new Vector3(3.5f, -2.5f);
-            Transform characterTransform = Instantiate(pf_Enemy_Base, position, Quaternion.identity);
+            Transform characterTransform = Instantiate(pf_Tikbalang_Base2, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
             character.Setup(isPlayer);
         }

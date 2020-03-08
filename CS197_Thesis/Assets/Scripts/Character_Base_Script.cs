@@ -16,7 +16,7 @@ public class Character_Base_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //MovementPhase();
     }
 
     public void Setup (bool isPlayer)
@@ -63,6 +63,52 @@ public class Character_Base_Script : MonoBehaviour
         position = a;
     }
 
+
+    private void MovementPhase()
+    {
+        int tempPos = ReturnPosition();
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            tempPos = tempPos - 1;
+
+
+            transform.position = new Vector3(transform.position.x - 1, transform.position.y);
+            UpdatePosition(tempPos);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            tempPos = tempPos + 18;
+
+
+            transform.position = new Vector3(transform.position.x, transform.position.y - 1);
+            UpdatePosition(tempPos);
+
+
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            tempPos = tempPos + 1;
+
+
+            transform.position = new Vector3(transform.position.x + 1, transform.position.y);
+            UpdatePosition(tempPos);
+
+
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            tempPos = tempPos - 18;
+
+
+            transform.position = new Vector3(transform.position.x, transform.position.y + 1);
+            UpdatePosition(tempPos);
+
+
+        }
+
+    }
 
 
 }

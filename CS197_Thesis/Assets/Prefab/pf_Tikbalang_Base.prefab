@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1287584993122448706}
   - component: {fileID: 3214493686212595448}
   m_Layer: 0
-  m_Name: pf_Enemy_Base
+  m_Name: pf_Tikbalang_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5884399526552115466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.51, y: -0.52, z: 5}
-  m_LocalScale: {x: 4.496, y: 4.384, z: 8}
+  m_LocalPosition: {x: 9.026, y: -8.512, z: 5}
+  m_LocalScale: {x: 3.5908873, y: 4.1245337, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -69,8 +69,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 7cefe9e9e8c984bbd9ff43235be8f54f, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 5597687760835222241, guid: f7dea7e328e776d4b98beebed24b4b4c,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

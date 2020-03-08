@@ -13,7 +13,7 @@ public class TikbalangEncounter_SH : MonoBehaviour
     }
 
     [SerializeField] private Transform pf_Character_Base;
-    [SerializeField] private Transform pf_Enemy_Base; //TODO change this to tikbalang prefab
+    [SerializeField] private Transform pf_Tikbalang_Base; //TODO change this to tikbalang prefab
     public AudioSource triggerSound;
     public AudioClip clip;
 
@@ -97,14 +97,14 @@ public class TikbalangEncounter_SH : MonoBehaviour
             position = new Vector3(-5.5f, -4.5f);
             Transform characterTransform = Instantiate(pf_Character_Base, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
-            character.Setup(isPlayer);
+            //character.Setup(isPlayer);
         }
         else
         {
             position = new Vector3(1.5f, 2.5f);
-            Transform characterTransform = Instantiate(pf_Enemy_Base, position, Quaternion.identity);
+            Transform characterTransform = Instantiate(pf_Tikbalang_Base, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
-            character.Setup(isPlayer);
+            //character.Setup(isPlayer);
         }
 
         return character;
