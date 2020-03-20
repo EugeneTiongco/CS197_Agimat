@@ -5,7 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class ManananggalMaze_SH : MonoBehaviour
 {
+    int[] map = new int[]
+    {
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 1
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 2
+        1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 3, 1, // 3
+        1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, // 4
+        1, 0, 1, 0, 1, 0, 1, 1, 1, 2, 1, 1, 0, 1, 0, 1, 1, 1, // 5
+        1, 0, 1, 0, 1, 0, 0, 0, 1, 2, 1, 1, 0, 1, 0, 1, 1, 1, // 6 
+        1, 0, 1, 0, 1, 0, 3, 0, 1, 2, 1, 1, 0, 1, 0, 0, 0, 1, // 7
+        1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 1, 1, 2, 1, 0, 0, 0, 1, // 8
+        1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 2, 1, 1, 1, 0, 1, // 9
+        1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 2, 2, 2, 2, 0, 0, 1, // 10
+        1, 1, 1, 0, 1, 0, 2, 2, 2, 2, 0, 1, 2, 1, 1, 1, 1, 1, // 11
+        1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 2, 1, 0, 0, 0, 1, // 12
+        1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, // 13
+        1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, // 14
+        1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, // 15
+        1, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, // 16
+        1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, // 17
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 1, // 18
+        1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 2, 1, // 19
+        1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 2, 1, // 20
+        1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 3, 1, 2, 1, // 21
+        1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, // 22
+        1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, // 23
+        1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, // 24
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1  // 25
 
+    };
 
     private static ManananggalMaze_SH stageHandler;
 
@@ -17,7 +45,6 @@ public class ManananggalMaze_SH : MonoBehaviour
     [SerializeField] private Transform pf_Character;
     [SerializeField] private Transform AI;
 
-    //[SerializeField] private Transform pf_Berberoka_Base;
     //TODO: Generate Manananggal prefab
 
     private Character_Base_Script playerCharacter;
@@ -43,30 +70,10 @@ public class ManananggalMaze_SH : MonoBehaviour
     {
         Debug.Log("Start");
         SpawnCharacters();
+        stageHandler.transform.position = playerCharacter.transform.position;
 
     }
 
-    //private Character_Base_Script SpawnCharacters(bool isPlayer)
-    //{
-    //    Vector3 position;
-    //    Character_Base_Script character;
-    //    if (isPlayer)
-    //    {
-    //        position = new Vector3(-0.5f, 0.5f);
-    //        Transform characterTransform = Instantiate(pf_Character, position, Quaternion.identity);
-    //        character = characterTransform.GetComponent<Character_Base_Script>();
-    //        character.Setup(isPlayer);
-    //    }
-    //    else
-    //    {
-    //        position = new Vector3(-2.8f, 3.5f);
-    //        Transform characterTransform = Instantiate(AI, position, Quaternion.identity);
-    //        character = characterTransform.GetComponent<Character_Base_Script>();
-    //        character.Setup(isPlayer);
-    //    }
-
-    //    return character;
-    //}
 
     private void SpawnCharacters()
     {
@@ -93,7 +100,8 @@ public class ManananggalMaze_SH : MonoBehaviour
         if (state == State.PlayerMovement)
         {
             MovementPhase();
-           
+            stageHandler.transform.position = playerCharacter.transform.position;
+
         }
     }
 

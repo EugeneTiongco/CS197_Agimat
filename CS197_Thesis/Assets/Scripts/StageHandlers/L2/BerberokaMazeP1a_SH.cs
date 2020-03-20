@@ -85,10 +85,12 @@ public class BerberokaMazeP1a_SH : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         if (state == State.PlayerMovement)
         {
             MovementPhase();
             CheckEnvironmentTrigger();
+            
         }
 
         if (state == State.EnvironmentMovement)
