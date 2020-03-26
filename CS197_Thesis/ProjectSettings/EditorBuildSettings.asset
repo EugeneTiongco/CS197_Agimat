@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/L2/L2_BerberokaMazeP3b.unity
     guid: 7fc14efb89f34bc48a8bb906fa2abff9
+  - enabled: 1
+    path: Assets/Scenes/L3/L3_Manananggal.unity
+    guid: 6d7138844de4c16499ebedbf5ac6d0e4
   m_configObjects: {}
