@@ -1,34 +1,46 @@
 fileFormatVersion: 2
-guid: f7dea7e328e776d4b98beebed24b4b4c
+guid: c89a4ee106431f04388f502a3e02d396
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5597687760835222241
-    second: Tikbalang Idle Spritesheet_0
+      213: -8368097092911164041
+    second: Berberoka idle_0
   - first:
-      213: 8497668618530497631
-    second: Tikbalang Idle Spritesheet_1
+      213: 1252010065299050949
+    second: Berberoka idle_1
   - first:
-      213: -6711868699922426371
-    second: Tikbalang Idle Spritesheet_2
+      213: -4332680493477051815
+    second: Berberoka idle_2
   - first:
-      213: -1790831481741841699
-    second: Tikbalang Idle Spritesheet_3
+      213: 4665780231219374799
+    second: Berberoka idle_3
   - first:
-      213: 2112413851513948218
-    second: Tikbalang Idle Spritesheet_4
+      213: -4912313581525149025
+    second: Berberoka idle_4
   - first:
-      213: 3595660877751608257
-    second: Tikbalang Idle Spritesheet_5
+      213: 203060230574723154
+    second: Berberoka idle_5
   - first:
-      213: -319589392794579188
-    second: Tikbalang Idle Spritesheet_6
+      213: -8500329030434539517
+    second: Berberoka idle_6
   - first:
-      213: 6554428484525370852
-    second: Tikbalang Idle Spritesheet_7
+      213: 6768013769429812563
+    second: Berberoka idle_7
   - first:
-      213: -4633917016672247007
-    second: Tikbalang Idle Spritesheet_8
+      213: -8634466124065656772
+    second: Berberoka idle_8
+  - first:
+      213: -6986989217291521712
+    second: Berberoka idle_9
+  - first:
+      213: -8537369349531650117
+    second: Berberoka idle_10
+  - first:
+      213: 623781067086980538
+    second: Berberoka idle_11
+  - first:
+      213: -2937041737316679645
+    second: Berberoka idle_12
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -113,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tikbalang Idle Spritesheet_0
+      name: Berberoka idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 56
-        height: 72
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36687ea154341e1478a1e59f6515d5f7
-      internalID: 5597687760835222241
+      spriteID: 92200ee07c9b70643b1128b4a0b3a600
+      internalID: -8368097092911164041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tikbalang Idle Spritesheet_1
+      name: Berberoka idle_1
       rect:
         serializedVersion: 2
-        x: 56
+        x: 40
         y: 0
-        width: 56
-        height: 72
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7ee7278e42b8fa46b295b97e17b5f5f
-      internalID: 8497668618530497631
+      spriteID: 8cf2182cc9c548a43b19fad0c825e83f
+      internalID: 1252010065299050949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tikbalang Idle Spritesheet_2
+      name: Berberoka idle_2
       rect:
         serializedVersion: 2
-        x: 112
+        x: 80
         y: 0
-        width: 56
-        height: 72
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45ba7b5d4a4752b419c47f7bb31a652e
-      internalID: -6711868699922426371
+      spriteID: def21a1275601354fada8c53fbead7fd
+      internalID: -4332680493477051815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tikbalang Idle Spritesheet_3
+      name: Berberoka idle_3
       rect:
         serializedVersion: 2
-        x: 168
+        x: 120
         y: 0
-        width: 56
-        height: 72
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f992790ac1f856842a07c14bef7ac5d1
-      internalID: -1790831481741841699
+      spriteID: 2fd5eacf129374c45b6077af55edffb2
+      internalID: 4665780231219374799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tikbalang Idle Spritesheet_4
+      name: Berberoka idle_4
       rect:
         serializedVersion: 2
-        x: 224
+        x: 160
         y: 0
-        width: 56
-        height: 72
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,20 +223,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18c5e09f17ad76945aac4d2cefeaf721
-      internalID: 2112413851513948218
+      spriteID: e5e7978dbce221b43a5a395c4df5a3e0
+      internalID: -4912313581525149025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tikbalang Idle Spritesheet_5
+      name: Berberoka idle_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 329ac596b2a254342b0fb13cef10f48c
+      internalID: 203060230574723154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Berberoka idle_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b63d1e701eeabb84c824bd13f7bc83d7
+      internalID: -8500329030434539517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Berberoka idle_7
       rect:
         serializedVersion: 2
         x: 280
         y: 0
-        width: 56
-        height: 72
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,20 +286,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfef5c51e26335d46b92de2783efbd68
-      internalID: 3595660877751608257
+      spriteID: f017a1ab8c9d9c14695cb93937ae7cd7
+      internalID: 6768013769429812563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tikbalang Idle Spritesheet_6
+      name: Berberoka idle_8
       rect:
         serializedVersion: 2
-        x: 336
+        x: 320
         y: 0
-        width: 56
-        height: 72
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,20 +307,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 191922a26eaf729409d87524051af88d
-      internalID: -319589392794579188
+      spriteID: f2bd32801f8411647a83fa099ba2ab6c
+      internalID: -8634466124065656772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tikbalang Idle Spritesheet_7
+      name: Berberoka idle_9
       rect:
         serializedVersion: 2
-        x: 392
+        x: 360
         y: 0
-        width: 56
-        height: 72
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,20 +328,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94999e06d958e5f4eb13f3a5d13ac4ec
-      internalID: 6554428484525370852
+      spriteID: 9f6f79d6ec2ba684986ab1a964094c43
+      internalID: -6986989217291521712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tikbalang Idle Spritesheet_8
+      name: Berberoka idle_10
       rect:
         serializedVersion: 2
-        x: 448
+        x: 400
         y: 0
-        width: 56
-        height: 72
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -295,8 +349,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34c57e171eff437429f3c98e613bfe0c
-      internalID: -4633917016672247007
+      spriteID: c3ab71674bbeef2459fab04e15e7864d
+      internalID: -8537369349531650117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Berberoka idle_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 0
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b54dfa92d09c98c49b814c99414b7e59
+      internalID: 623781067086980538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Berberoka idle_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66448eabebae7af4ab9961cd86534c6e
+      internalID: -2937041737316679645
       vertices: []
       indices: 
       edges: []

@@ -30,7 +30,7 @@ public class TikbalangMaze_SH : MonoBehaviour
     private float maxTime = 5f;
     private float timeLeft;
 
-    int[] map = new int[]
+    /*int[] map = new int[]
     {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1,
@@ -47,7 +47,26 @@ public class TikbalangMaze_SH : MonoBehaviour
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
-    };
+    };*/
+
+    int[] map = new int[]
+   {
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, //1
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 1, 1, //2
+        1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, //3
+        1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, //4
+        1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, //5
+        1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, //6
+        1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 2, 1, 1, //7
+        1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, //8
+        1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, //9
+        1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, //10
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, //11
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, //12
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+
+   };
     private enum State
     {
          Wait, RegularMovementPhase, IrregularMovementPhase, Start, FixedMovementPhase, Cutscene, Sound, End, TikbalangRide, GameOver
@@ -71,7 +90,7 @@ public class TikbalangMaze_SH : MonoBehaviour
         playerCharacter = SpawnCharacters(true);
         tikbalang = SpawnCharacters(false);
         triggerSound = GetComponent<AudioSource>();
-        playerCharacter.UpdatePosition(164);
+        playerCharacter.UpdatePosition(146);
         Debug.Log("player position:" + playerCharacter.ReturnPosition());
     }
 
@@ -82,7 +101,8 @@ public class TikbalangMaze_SH : MonoBehaviour
         {
             Turn_Window.Show_Static("Press E to invert your clothes, you don't have much time!");
             //CheckSceneTrigger();
-            StartCoroutine(WaitForECoroutine());
+            
+        StartCoroutine(WaitForECoroutine());
         }
 
         if (state == State.RegularMovementPhase)
@@ -119,16 +139,20 @@ public class TikbalangMaze_SH : MonoBehaviour
            
             if(timeLeft <=0 && spaceBarPressed >= 15)
             {
-                Turn_Window.Show_Static("You recieved the Tikbalang's mutya!");
+                
                 Image_Window.Hide();
-                if(pressedE == true)
+                
+                
+                if (pressedE == true)
                 {
                     state = State.RegularMovementPhase;
+                    Turn_Window.Show_Static("You recieved the Tikbalang's mutya!");
                 }
 
                 else if (pressedE == false)
                 {
                     state = State.IrregularMovementPhase;
+                    Turn_Window.Show_Static("You recieved the Tikbalang's mutya!");
                 }
 
             }
@@ -150,7 +174,7 @@ public class TikbalangMaze_SH : MonoBehaviour
 
         if (state == State.End)
         {
-            
+            //StartCoroutine(NextSceneCoroutine());
             LoadNextScene();
             //TODO go back to previous scene
         }
@@ -169,14 +193,14 @@ public class TikbalangMaze_SH : MonoBehaviour
         Character_Base_Script character;
         if (isPlayer)
         {
-            position = new Vector3(-6.5f, -2.5f);
+            position = new Vector3(-6.5f, -1.5f);
             Transform characterTransform = Instantiate(pf_Character_Fog, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
             character.Setup(isPlayer);
         }
         else
         {
-            position = new Vector3(3.5f, -2.5f);
+            position = new Vector3(5.5f, 0.5f);
             Transform characterTransform = Instantiate(pf_Tikbalang_Base2, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
             character.Setup(isPlayer);
@@ -187,19 +211,20 @@ public class TikbalangMaze_SH : MonoBehaviour
 
     private void CheckSceneTrigger()
     {
-        if (playerCharacter.ReturnPosition() == 41) // Clue trigger
+        int tempPos = playerCharacter.ReturnPosition();
+        if (map[tempPos] == 3) // Clue trigger
         {
             Turn_Window.Show_Static("Spacebar. 15 times.");
         }
 
-        else if (playerCharacter.ReturnPosition() == 174 && rodeTikbalang == false) // tikbalang trigger
+        else if (map[tempPos] == 2 && rodeTikbalang == false) // tikbalang trigger
         {
             //Turn_Window.Show_Static("*Tikbalang riding here*");
             state = State.TikbalangRide;
 
         }
 
-        else if (playerCharacter.ReturnPosition() == 15) // Escaped trigger
+        else if (map[tempPos] == 4) // Escaped trigger
         {
             Turn_Window.Show_Static("You escaped the tikbalang");
             //StartCoroutine(NextSceneCoroutine());
@@ -351,6 +376,24 @@ public class TikbalangMaze_SH : MonoBehaviour
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
         yield return new WaitForSeconds(3);
         state = State.Start;
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+    }
+
+    IEnumerator NextSceneCoroutine()
+    {
+        Debug.Log("Started NextScene Coroutine at timestamp : " + Time.time);
+        //state = State.Wait;
+        yield return new WaitForSeconds(1);
+        //state = State.End;
+        LoadNextScene();
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+    }
+
+    IEnumerator MutyaCoroutine()
+    {
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        yield return new WaitForSeconds(3);
+        Turn_Window.Tago();
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
 

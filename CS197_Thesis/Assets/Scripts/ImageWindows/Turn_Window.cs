@@ -17,6 +17,11 @@ public class Turn_Window : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public static void Tago()
+    {
+        instance.Hide();
+    }
+
     private void Show(string turnstring)
     {
         gameObject.SetActive(true);

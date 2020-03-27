@@ -66,7 +66,10 @@ public class BerberokaMazeP2b_SH : MonoBehaviour
 
     };
 
-
+    Transform characterTransform;
+    Transform monsterTransform;
+    Transform monsterTransform1;
+    Transform monsterTransform2;
     private void Awake()
     {
         stageHandler = this;
@@ -77,8 +80,7 @@ public class BerberokaMazeP2b_SH : MonoBehaviour
     void Start()
     {
         //Turn_Window.Show_Static("The tikbalang made you lose your way");
-        playerCharacter = SpawnCharacters(true);
-        Berberoka = SpawnCharacters(false);
+        SpawnCharacters();
         playerCharacter.UpdatePosition(167);
         Debug.Log("player position:" + playerCharacter.ReturnPosition());
     }
@@ -102,6 +104,23 @@ public class BerberokaMazeP2b_SH : MonoBehaviour
         }
 
         return character;
+    }
+
+    private void SpawnCharacters()
+    {
+        Vector3 position = new Vector3(-3.5f, -2.5f);
+        characterTransform = Instantiate(pf_Character, position, Quaternion.identity);
+        playerCharacter = characterTransform.GetComponent<Character_Base_Script>();
+
+        position = new Vector3(-2.8f, 4.5f);
+        monsterTransform = Instantiate(pf_Berberoka_Base, position, Quaternion.identity);
+
+        position = new Vector3(5.0f, 3.0f);
+        monsterTransform1 = Instantiate(pf_Berberoka_Base, position, Quaternion.identity);
+
+        position = new Vector3(-1.0f, -5.0f);
+        monsterTransform1 = Instantiate(pf_Berberoka_Base, position, Quaternion.identity);
+
     }
     // Update is called once per frame
     void Update()
