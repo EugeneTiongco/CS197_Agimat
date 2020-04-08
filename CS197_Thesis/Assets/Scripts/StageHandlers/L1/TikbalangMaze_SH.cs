@@ -167,14 +167,14 @@ public class TikbalangMaze_SH : MonoBehaviour
                 if (pressedE == true)
                 {
                     state = State.RegularMovementPhase;
-                    Turn_Window.Show_Static("You recieved the Tikbalang's mutya!");
+                    Turn_Window.Show_Static("You received the Tikbalang's mutya!");
                     state = State.Exiting;
                 }
 
                 else if (pressedE == false)
                 {
                     state = State.IrregularMovementPhase;
-                    Turn_Window.Show_Static("You recieved the Tikbalang's mutya!");
+                    Turn_Window.Show_Static("You received the Tikbalang's mutya!");
                     state = State.Exiting;
                 }
 
