@@ -363,7 +363,8 @@ public class ManananggalMaze_SH : MonoBehaviour
        
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
         yield return new WaitForSeconds(2);
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
 
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
