@@ -88,6 +88,7 @@ public class ManananggalMaze_SH : MonoBehaviour
         SpawnObjects();
         stageHandler.transform.position = playerCharacter.transform.position;
         playerCharacter.UpdatePosition(200);
+        Turn_Window.Show_Static("Defeat the manananggal...");
     }
 
 
