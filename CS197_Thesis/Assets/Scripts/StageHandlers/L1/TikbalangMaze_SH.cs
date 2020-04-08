@@ -24,7 +24,7 @@ public class TikbalangMaze_SH : MonoBehaviour
     private State state;
     private bool rodeTikbalang = false;
     private int spaceBarPressed = 0;
-    private bool isActive;
+    private bool foundNote;
     private bool pressedE;
 
     private float maxTime = 5f;
@@ -69,7 +69,7 @@ public class TikbalangMaze_SH : MonoBehaviour
    };
     private enum State
     {
-         Wait, RegularMovementPhase, IrregularMovementPhase, Start, FixedMovementPhase, Cutscene, Sound, End, TikbalangRide, GameOver
+         Wait, RegularMovementPhase, IrregularMovementPhase, Start, FixedMovementPhase, Cutscene, Sound, End, TikbalangRide, GameOver, Exiting
     }
 
     private void Awake()
@@ -80,9 +80,11 @@ public class TikbalangMaze_SH : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Turn_Window2.Tago();
         state = State.Wait;
         pressedE = false;
-        Turn_Window.Show_Static("The tikbalang made you lose your way");
+        foundNote = false;
+        Turn_Window.Show_Static("Look for a way out...");
         //Turn_Window.Show_Static("Press E to fix clothes");
         StartCoroutine(DelayStartCoroutine());
        
@@ -92,23 +94,41 @@ public class TikbalangMaze_SH : MonoBehaviour
         triggerSound = GetComponent<AudioSource>();
         playerCharacter.UpdatePosition(146);
         Debug.Log("player position:" + playerCharacter.ReturnPosition());
+
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (state == State.Start)
+        /*if (state == State.Start)
         {
             Turn_Window.Show_Static("Press E to invert your clothes, you don't have much time!");
             //CheckSceneTrigger();
             
         StartCoroutine(WaitForECoroutine());
-        }
+        }*/
 
         if (state == State.RegularMovementPhase)
         {
             RegularMovementPhase();
             CheckSceneTrigger();
+        }
+
+        if (state == State.Exiting)
+        {
+            StopAllCoroutines();
+            if(pressedE == true)
+            {
+                RegularMovementPhase();
+                CheckSceneTrigger();
+            }
+
+            else if(pressedE == false)
+            {
+                IrregularMovementPhase();
+                CheckSceneTrigger();
+            }
         }
 
         if (state == State.IrregularMovementPhase)
@@ -127,17 +147,18 @@ public class TikbalangMaze_SH : MonoBehaviour
             {
                 timeLeft -= Time.deltaTime;
             }
-            else
+
+            /*else
             {
                 Time.timeScale = 0;
-            }
+            }*/
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 spaceBarPressed++;
             }
            
-            if(timeLeft <=0 && spaceBarPressed >= 15)
+            if(timeLeft <= 0 && spaceBarPressed >= 15)
             {
                 
                 Image_Window.Hide();
@@ -147,12 +168,14 @@ public class TikbalangMaze_SH : MonoBehaviour
                 {
                     state = State.RegularMovementPhase;
                     Turn_Window.Show_Static("You recieved the Tikbalang's mutya!");
+                    state = State.Exiting;
                 }
 
                 else if (pressedE == false)
                 {
                     state = State.IrregularMovementPhase;
                     Turn_Window.Show_Static("You recieved the Tikbalang's mutya!");
+                    state = State.Exiting;
                 }
 
             }
@@ -174,8 +197,8 @@ public class TikbalangMaze_SH : MonoBehaviour
 
         if (state == State.End)
         {
-            //StartCoroutine(NextSceneCoroutine());
-            LoadNextScene();
+            StartCoroutine(NextSceneCoroutine());
+            //LoadNextScene();
             //TODO go back to previous scene
         }
 
@@ -214,7 +237,15 @@ public class TikbalangMaze_SH : MonoBehaviour
         int tempPos = playerCharacter.ReturnPosition();
         if (map[tempPos] == 3) // Clue trigger
         {
-            Turn_Window.Show_Static("Spacebar. 15 times.");
+            
+            Turn_Window2.Pakita();
+            foundNote = true;
+
+            if (foundNote == true && Input.GetKeyDown(KeyCode.E))
+            {
+                pressedE = true;
+                state = State.RegularMovementPhase;
+            }
         }
 
         else if (map[tempPos] == 2 && rodeTikbalang == false) // tikbalang trigger
@@ -232,7 +263,7 @@ public class TikbalangMaze_SH : MonoBehaviour
 
         }
 
-        else if(state == State.Start && Input.GetKeyDown(KeyCode.E))
+        else if(foundNote == true && Input.GetKeyDown(KeyCode.E))
         {
             pressedE = true;
             state = State.RegularMovementPhase;
@@ -368,14 +399,14 @@ public class TikbalangMaze_SH : MonoBehaviour
 
     private void LoadNextScene()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 
     IEnumerator DelayStartCoroutine()
     {
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
         yield return new WaitForSeconds(3);
-        state = State.Start;
+        state = State.IrregularMovementPhase;
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
 

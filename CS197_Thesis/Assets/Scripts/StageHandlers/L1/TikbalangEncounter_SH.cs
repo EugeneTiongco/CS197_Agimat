@@ -101,7 +101,7 @@ public class TikbalangEncounter_SH : MonoBehaviour
         }
         else
         {
-            position = new Vector3(1.5f, 3.5f);
+            position = new Vector3(1.2f, 2.0f);
             Transform characterTransform = Instantiate(pf_Tikbalang_Base, position, Quaternion.identity);
             character = characterTransform.GetComponent<Character_Base_Script>();
             //character.Setup(isPlayer);

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5216831682802745808}
   - component: {fileID: 5216831682802745809}
-  - component: {fileID: 5216831682802745814}
+  - component: {fileID: 316345559983292818}
   m_Layer: 0
   m_Name: Manananggal
   m_TagString: Untagged
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &5216831682802745814
+--- !u!95 &316345559983292818
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ Animator:
   m_GameObject: {fileID: 5216831682802745815}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4dd938ef5ef53964ebc4216687755a3b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 74ba29f1c6279684a839e2c7d5e8296b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

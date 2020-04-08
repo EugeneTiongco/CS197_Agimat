@@ -84,7 +84,7 @@ public class Image_Window : MonoBehaviour
     {
         gameObject.SetActive(true);
         redLine.enabled = true;
-        tikbalangRide.enabled = true;
+        //tikbalangRide.enabled = true;
         isActive = true;
     }
 

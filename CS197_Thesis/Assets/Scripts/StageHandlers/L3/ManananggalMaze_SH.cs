@@ -13,13 +13,13 @@ public class ManananggalMaze_SH : MonoBehaviour
         1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 5, 1, // 4
         1, 0, 1, 0, 1, 0, 1, 1, 1, 2, 1, 1, 0, 1, 0, 1, 1, 1, // 5
         1, 0, 1, 0, 1, 4, 4, 4, 1, 2, 1, 1, 0, 1, 0, 1, 1, 1, // 6 
-        1, 0, 1, 0, 1, 4, 4, 4, 1, 2, 1, 1, 0, 1, 0, 1, 1, 1, // 7
+        1, 0, 1, 0, 1, 4, 1, 4, 1, 2, 1, 1, 0, 1, 0, 1, 1, 1, // 7
         1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 1, 1, 2, 1, 0, 0, 0, 1, // 8
         1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 2, 1, 1, 1, 0, 1, // 9
         1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 2, 2, 2, 2, 0, 0, 1, // 10
         1, 1, 1, 0, 1, 0, 2, 2, 2, 2, 0, 1, 2, 1, 1, 1, 1, 1, // 11
         1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 2, 1, 0, 0, 0, 1, // 12
-        1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, // 13
+        1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, // 13
         1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, // 14
         1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, // 15
         1, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, // 16
@@ -44,6 +44,8 @@ public class ManananggalMaze_SH : MonoBehaviour
 
     [SerializeField] private Transform pf_Character;
     [SerializeField] private Transform AI;
+    [SerializeField] private Transform bawang;
+    [SerializeField] private Transform half;
 
     //TODO: Generate Manananggal prefab
 
@@ -52,6 +54,11 @@ public class ManananggalMaze_SH : MonoBehaviour
     private State state;
     Transform characterTransform;
     Transform monsterTransform;
+    Transform TFbawang1, TFbawang2, TFbawang3;
+    Transform lowerHalf;
+    Pathfinding.AIDestinationSetter destinationSetter;
+
+
 
     private int playerBawang = 0;
     private int monsterHealth = 3;
@@ -78,6 +85,7 @@ public class ManananggalMaze_SH : MonoBehaviour
     {
         Debug.Log("Start");
         SpawnCharacters();
+        SpawnObjects();
         stageHandler.transform.position = playerCharacter.transform.position;
         playerCharacter.UpdatePosition(200);
     }
@@ -91,10 +99,25 @@ public class ManananggalMaze_SH : MonoBehaviour
   
 
         position = new Vector3(3.5f, 3.5f);
-        Pathfinding.AIDestinationSetter destinationSetter;
+        
         monsterTransform = Instantiate(AI, position, Quaternion.Euler(-90, 0, 0));
         destinationSetter = monsterTransform.GetComponent<Pathfinding.AIDestinationSetter>();
         destinationSetter.SetTarget(characterTransform);
+    }
+
+    private void SpawnObjects()
+    {
+        Vector3 position = new Vector3(-2.5f, -1.5f);
+        TFbawang1 = Instantiate(bawang, position, Quaternion.identity);
+
+        position = new Vector3(7.5f, 2.5f);
+        TFbawang2 = Instantiate(bawang, position, Quaternion.identity);
+
+        position = new Vector3(5.5f, -15.5f);
+        TFbawang3 = Instantiate(bawang, position, Quaternion.identity);
+
+        position = new Vector3(-6.5f, -18.5f);
+        lowerHalf = Instantiate(half, position, Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -103,11 +126,17 @@ public class ManananggalMaze_SH : MonoBehaviour
         if(characterTransform.position == monsterTransform.position)
         {
             Debug.Log("You got caught");
+            StartCoroutine(GameOverTextTimer());
         }
 
         if (monsterHealth == 0)
         {
+            monsterTransform.position = new Vector3(100.0f, 100.0f);
             Debug.Log("You win");
+            //Turn_Window.Show_Static("You won!");
+            StartCoroutine(WinTimer());
+            
+            
         }
 
         if (state == State.PlayerMovement)
@@ -254,6 +283,8 @@ public class ManananggalMaze_SH : MonoBehaviour
         {
             bawang1 = false;
             playerBawang++;
+            TFbawang1.position = new Vector3(100.0f, 100.0f);
+            
             Debug.Log("Total Bawang:" + playerBawang);
         }
 
@@ -261,6 +292,7 @@ public class ManananggalMaze_SH : MonoBehaviour
         {
             bawang2 = false;
             playerBawang++;
+            TFbawang2.position = new Vector3(100.0f, 100.0f);
             Debug.Log("Total Bawang:" + playerBawang);
         }
 
@@ -268,6 +300,7 @@ public class ManananggalMaze_SH : MonoBehaviour
         {
             bawang3 = false;
             playerBawang++;
+            TFbawang3.position = new Vector3(100.0f, 100.0f);
             Debug.Log("Total Bawang:" + playerBawang);
         }
 
@@ -310,4 +343,28 @@ public class ManananggalMaze_SH : MonoBehaviour
         CheckEnvironmentTrigger();
         //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
+
+    IEnumerator GameOverTextTimer()
+    {
+        Turn_Window.Show_Static("Game Over! Try Again");
+        Debug.Log("State: " + state);
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(11);
+
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+    }
+
+
+    IEnumerator WinTimer()
+    {
+        Turn_Window.Show_Static("You won!");
+       
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        yield return new WaitForSeconds(2);
+        UnityEditor.EditorApplication.isPlaying = false;
+
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+    }
+   
 }
